@@ -1,4 +1,4 @@
-﻿stages:
+stages:
 - name: Build
   steps:
   - runScriptConfig:
@@ -8,6 +8,10 @@
       TEST: '"this is test"'
     envFrom:
     - {}
+  when:
+    branch:
+      include:
+      - '*'
 - name: helm
   steps:
   - applyYamlConfig:
