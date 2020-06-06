@@ -1,0 +1,16 @@
+﻿stages:
+- name: Build
+  steps:
+  - runScriptConfig:
+      image: python:latest
+      shellScript: "ls \nls -ltr\necho ${CICD_EVENT} $TEST"
+    env:
+      TEST: '"this is test"'
+    envFrom:
+    - {}
+- name: helm
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+timeout: 60
+notification: {}
